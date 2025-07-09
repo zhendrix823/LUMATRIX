@@ -1,9 +1,8 @@
-# ✅ Full unsorted_review_ui.py for LUMATRIX v0.3.5
+# ✅ Full unsorted_review_ui.py for LUMATRIX v0.3.5 — supports after_review callback
 
 import webview
-import parse_fixture.parse_engine as parse_engine
 
-def run(pdf_files):
+def run(pdf_files, after_review):
     rows = ""
 
     if pdf_files:
@@ -39,13 +38,11 @@ def run(pdf_files):
     </html>
     """
 
-    # Create the window
     window = webview.create_window("Review _Unsorted PDFs", html=html)
 
-    # Register a callback to run the parser when the window closes
     def on_closed():
-        print("✅ Reviewer closed — running parse_engine.main()...")
-        parse_engine.main()
+        print("✅ Review window closed.")
+        after_review()
 
     window.events.closed += on_closed
 
