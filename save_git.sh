@@ -12,7 +12,7 @@ git add .
 
 # Step 3: Commit with milestone message
 echo "✅ Committing..."
-git commit -m "✅ LUMATRIX milestone save — full pipeline with brand sort working"
+git commit -m "✅ Added brand_admin.py — admin tool for self-training brand map"
 
 # Step 4: Show your new log
 echo "📜 Recent commits:"
