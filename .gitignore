@@ -1,0 +1,27 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / build
+build/
+dist/
+*.spec
+
+# VS Code settings (optional)
+.vscode/
+
+# macOS metadata
+.DS_Store
+
+# PyInstaller artifacts
+*.egg-info/
+*.manifest
+*.tmp
+*.log
+*.bak
+*.old
+
+# Environment
+.env
+.venv
