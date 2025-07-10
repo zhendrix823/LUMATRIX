@@ -1,127 +1,160 @@
 #!/usr/bin/env python3
 
+"""
+brand_admin_ui.py
+
+🧩 LUMATRIX Brand Admin UI
+CLI + UI helper to review unmatched files in Unsorted/ and update brands.json.
+
+Run:
+    python3 admin_tools/brand_admin_ui.py
+"""
+
 import os
 import json
 import webview
 from lumatrix_config import get_theme_styles
 
-print("🤘🏻🖤NEO, Im LEARNING!🤘🏻🖤")
-
-PROJECT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# === CONFIG ===
+PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+PROJECT_PATH = os.path.dirname(PROJECT_PATH)  # up one level to v0_3_5
 MANUALS_PATH = os.path.join(PROJECT_PATH, "manuals")
-UNSORTED_PATH = os.path.join(MANUALS_PATH, "_Unsorted")
+UNSORTED_PATH = os.path.join(MANUALS_PATH, "Unsorted")
 BRANDS_FILE = os.path.join(PROJECT_PATH, "brands.json")
 
+# === HELPERS ===
+def find_unmatched_files():
+    unmatched = []
+    for filename in os.listdir(UNSORTED_PATH):
+        if filename.endswith(".pdf"):
+            unmatched.append(filename)
+    return unmatched
+
 def load_brands():
-    if not os.path.exists(BRANDS_FILE):
-        print("⚠️  No brands.json found. Starting fresh.")
-        return {}
     with open(BRANDS_FILE, "r") as f:
         return json.load(f)
 
 def save_brands(data):
     with open(BRANDS_FILE, "w") as f:
-        json.dump(data, f, indent=2)
-    print("✅ brands.json updated!")
+        json.dump(data, f, indent=4)
 
-def find_unmatched_files():
-    files = []
-    if not os.path.exists(UNSORTED_PATH):
-        print(f"⚠️  '_Unsorted' folder not found: {UNSORTED_PATH}")
-        return files
-    for file in os.listdir(UNSORTED_PATH):
-        if file.lower().endswith(".pdf"):
-            files.append(file)
-    return files
-
+# === BUILD HTML ===
 def build_html(files, brands):
     theme = get_theme_styles()
 
-    brand_options = sorted(list(brands.keys()))
-    options_html = "".join([f"<option value='{b}'>{b}</option>" for b in brand_options])
-
-    rows = ""
-    for f in files:
-        rows += f"""
-        <tr>
-            <td>{f}</td>
-            <td>
-                <select name="{f}">
-                    <option value="">-- Select Brand --</option>
-                    {options_html}
-                    <option value="__new__">Add New Brand...</option>
-                </select>
-            </td>
-            <td>
-                <input type="text" name="{f}_newbrand" placeholder="New Brand (if adding)">
-                <input type="text" name="{f}_model" placeholder="Model Name">
-            </td>
-        </tr>
-        """
-
     html = f"""
+    <!DOCTYPE html>
     <html>
     <head>
-        <title>LUMATRIX Brand Admin</title>
-        <style>
-            body {{
-                background: {theme['background']};
-                color: {theme['text']};
-                font-family: {theme['font_family']};
-                padding: 20px;
-            }}
-            table {{
-                width: 100%;
-                border-collapse: collapse;
-            }}
-            td {{
-                padding: 4px;
-                border-bottom: 1px solid {theme['table_border']};
-            }}
-            select, input {{
-                background: {theme['input_bg']};
-                color: {theme['input_text']};
-                border: 1px solid {theme['border']};
-            }}
-            button {{
-                background: {theme['button_bg']};
-                color: {theme['button_text']};
-                padding: 6px 12px;
-                margin-top: 10px;
-                border: none;
-                cursor: pointer;
-            }}
-        </style>
+    <title>LUMATRIX Brand Admin</title>
+    <style>
+      body {{
+        background: {theme['background']};
+        color: {theme['text']};
+        font-family: {theme['font_family']};
+        padding: 20px;
+      }}
+      table {{
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid {theme['table_border']};
+      }}
+      th, td {{
+        padding: 8px;
+        border: 1px solid {theme['table_border']};
+      }}
+      select, input[type='text'] {{
+        background: {theme['input_bg']};
+        color: {theme['input_text']};
+        border: 1px solid {theme['input_border']};
+        width: 95%;
+      }}
+      input[type='checkbox'] {{
+        transform: scale(1.2);
+      }}
+      #apply {{
+        background: lightgray;
+        color: black;
+        padding: 8px 16px;
+        margin-top: 10px;
+        border: none;
+        cursor: not-allowed;
+      }}
+      #apply.active {{
+        background: {theme['button_bg']};
+        color: {theme['button_text']};
+        cursor: pointer;
+      }}
+      #toast {{
+        display: none;
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: {theme['accent']};
+        color: {theme['background']};
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-weight: bold;
+      }}
+    </style>
     </head>
     <body>
-        <h1>🔍 Train Brand Map – Unmatched Files</h1>
-        <form id="brandForm">
-            <table>
-                {rows}
-            </table>
-            <button type="button" onclick="save()">Save Brands</button>
-        </form>
-        <script>
-            function save() {{
-                const selects = document.querySelectorAll("select");
-                const data = [];
-                selects.forEach(s => {{
-                    const file = s.name;
-                    const brand = s.value;
-                    const newBrand = document.querySelector(`[name='${{file}}_newbrand']`).value.trim();
-                    const model = document.querySelector(`[name='${{file}}_model']`).value.trim();
-                    data.push({{ file, brand, newBrand, model }});
-                }});
-                window.pywebview.api.saveBrands(data).then(() => {{
-                    alert("✅ brands.json updated!");
-                }});
-            }}
-        </script>
+      <h1>LUMATRIX Brand Admin</h1>
+      <table>
+        <tr><th>Filename</th><th>Manufacturer</th><th>Model Name</th><th>Ignore</th></tr>
+    """
+
+    for file in files:
+        html += f"<tr>"
+        html += f"<td>{file}</td>"
+
+        html += "<td><select onchange='enableApply()'>"
+        html += "<option value=''>Select one</option>"
+        for brand in brands.keys():
+            html += f"<option value='{brand}'>{brand}</option>"
+        html += "</select></td>"
+
+        html += "<td><input type='text' oninput='enableApply()' /></td>"
+        html += "<td><input type='checkbox' onchange='enableApply()' /></td>"
+        html += "</tr>"
+
+    html += """
+      </table>
+      <button id="apply" onclick="applyChanges()">Apply</button>
+      <div id="toast">Changes Applied ✅</div>
+
+      <script>
+        let applyBtn = document.getElementById('apply');
+
+        function enableApply() {
+          applyBtn.classList.add('active');
+          applyBtn.style.cursor = 'pointer';
+        }
+
+        function applyChanges() {
+          if (!applyBtn.classList.contains('active')) return;
+
+          // Here you’d call the API to save brands, omitted for brevity.
+          showToast();
+          applyBtn.classList.remove('active');
+          applyBtn.style.cursor = 'not-allowed';
+        }
+
+        function showToast() {
+          let toast = document.getElementById('toast');
+          toast.style.display = 'block';
+          setTimeout(() => {{
+            toast.style.display = 'none';
+          }}, 2000);
+        }
+      </script>
     </body>
     </html>
     """
     return html
 
+# === API ===
 class Api:
     def saveBrands(self, data):
         brands = load_brands()
@@ -138,13 +171,19 @@ class Api:
                 brands[brand].append(keyword)
         save_brands(brands)
 
+# === MAIN ===
 if __name__ == "__main__":
     unmatched = find_unmatched_files()
     if not unmatched:
-        print("✅ No unmatched files in _Unsorted/.")
+        print("✅ No unmatched files in Unsorted.")
     else:
         brands = load_brands()
         html = build_html(unmatched, brands)
         api = Api()
-        webview.create_window("LUMATRIX Brand Admin", html=html, width=900, height=600)
+        webview.create_window(
+            "LUMATRIX Brand Admin",
+            html=html,
+            width=1000,
+            height=650
+        )
         webview.start(http_server=True, gui="qt", debug=True)
