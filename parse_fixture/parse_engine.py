@@ -1,15 +1,35 @@
 import os
-import json
 
-# ✅ Load brands from JSON instead of hardcoding
+# ------------------------------
+# 🗂️ Paths
+# ------------------------------
 PROJECT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BRANDS_FILE = os.path.join(PROJECT_PATH, "brands.json")
+UNSORTED_PATH = os.path.join(PROJECT_PATH, "manuals", "Unsorted")
 
-def load_brand_keywords():
-    if not os.path.exists(BRANDS_FILE):
-        print(f"⚠️ brands.json not found — using empty brand map.")
-        return {}
-    with open(BRANDS_FILE, "r") as f:
-        return json.load(f)
+# ------------------------------
+# ✅ Make sure Unsorted folder exists
+# ------------------------------
+def ensure_unsorted_folder():
+    if not os.path.exists(UNSORTED_PATH):
+        os.makedirs(UNSORTED_PATH)
+        print(f"✅ Created missing folder: {UNSORTED_PATH}")
+    else:
+        print(f"✅ Unsorted folder exists: {UNSORTED_PATH}")
 
-BRAND_KEYWORDS = load_brand_keywords()
+# ------------------------------
+# 🔍 Your actual parse logic
+# ------------------------------
+def parse_fixtures():
+    print("🚀 Parsing fixtures...")
+    # TODO: Add your actual parsing logic here
+    # Example:
+    for filename in os.listdir(UNSORTED_PATH):
+        print(f"📄 Found file: {filename}")
+    print("✅ Parsing complete!")
+
+# ------------------------------
+# 🚦 Main
+# ------------------------------
+if __name__ == "__main__":
+    ensure_unsorted_folder()
+    parse_fixtures()
