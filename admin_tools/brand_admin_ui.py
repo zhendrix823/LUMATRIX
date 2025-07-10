@@ -13,7 +13,10 @@ Run:
 import os
 import json
 import webview
-from lumatrix_config import get_theme_styles
+import sys
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from config.theme_config import get_theme_styles
 
 # === CONFIG ===
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
@@ -63,91 +66,72 @@ def build_html(files, brands):
         padding: 8px;
         border: 1px solid {theme['table_border']};
       }}
-      select, input[type='text'] {{
+      select, input {{
         background: {theme['input_bg']};
         color: {theme['input_text']};
         border: 1px solid {theme['input_border']};
-        width: 95%;
       }}
-      input[type='checkbox'] {{
-        transform: scale(1.2);
-      }}
-      #apply {{
-        background: lightgray;
-        color: black;
-        padding: 8px 16px;
+      button {{
+        background: {theme['accent']};
+        color: {theme['button_text']};
+        padding: 6px 12px;
         margin-top: 10px;
         border: none;
-        cursor: not-allowed;
-      }}
-      #apply.active {{
-        background: {theme['button_bg']};
-        color: {theme['button_text']};
         cursor: pointer;
       }}
-      #toast {{
-        display: none;
-        position: fixed;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: {theme['accent']};
-        color: {theme['background']};
-        padding: 10px 20px;
-        border-radius: 4px;
-        font-weight: bold;
+      button:disabled {{
+        background: grey;
+        cursor: not-allowed;
       }}
     </style>
     </head>
     <body>
       <h1>LUMATRIX Brand Admin</h1>
       <table>
-        <tr><th>Filename</th><th>Manufacturer</th><th>Model Name</th><th>Ignore</th></tr>
+        <tr><th>Filename</th><th>Manufacturer</th><th>Model Name</th></tr>
     """
 
-    for file in files:
-        html += f"<tr>"
-        html += f"<td>{file}</td>"
-
-        html += "<td><select onchange='enableApply()'>"
-        html += "<option value=''>Select one</option>"
+    for idx, file in enumerate(files):
+        html += f"<tr><td>{file}</td><td><select class='brand-select' data-idx='{idx}'>"
+        html += f"<option value=''>Select one</option>"
         for brand in brands.keys():
             html += f"<option value='{brand}'>{brand}</option>"
-        html += "</select></td>"
-
-        html += "<td><input type='text' oninput='enableApply()' /></td>"
-        html += "<td><input type='checkbox' onchange='enableApply()' /></td>"
-        html += "</tr>"
+        html += "</select></td><td><input type='text' class='model-input' data-idx='{idx}' placeholder='Model name'></td></tr>"
 
     html += """
       </table>
-      <button id="apply" onclick="applyChanges()">Apply</button>
-      <div id="toast">Changes Applied ✅</div>
+      <button id="apply-btn" disabled>Apply</button>
 
       <script>
-        let applyBtn = document.getElementById('apply');
+        const selects = document.querySelectorAll('.brand-select');
+        const applyBtn = document.getElementById('apply-btn');
 
-        function enableApply() {
-          applyBtn.classList.add('active');
-          applyBtn.style.cursor = 'pointer';
-        }
+        selects.forEach(select => {
+          select.addEventListener('change', () => {
+            let anySelected = false;
+            selects.forEach(s => {
+              if (s.value) anySelected = true;
+            });
+            applyBtn.disabled = !anySelected;
+          });
+        });
 
-        function applyChanges() {
-          if (!applyBtn.classList.contains('active')) return;
-
-          // Here you’d call the API to save brands, omitted for brevity.
-          showToast();
-          applyBtn.classList.remove('active');
-          applyBtn.style.cursor = 'not-allowed';
-        }
-
-        function showToast() {
-          let toast = document.getElementById('toast');
-          toast.style.display = 'block';
-          setTimeout(() => {{
-            toast.style.display = 'none';
-          }}, 2000);
-        }
+        applyBtn.addEventListener('click', () => {
+          let data = [];
+          selects.forEach(select => {
+            const idx = select.dataset.idx;
+            const brand = select.value;
+            const model = document.querySelector(`.model-input[data-idx='${idx}']`).value.trim();
+            if (brand) {
+              data.push({ brand, model });
+            }
+          });
+          if (data.length > 0) {
+            window.pywebview.api.saveBrands(data).then(() => {
+              alert('Brands updated!');
+            });
+          }
+        });
       </script>
     </body>
     </html>
@@ -160,8 +144,6 @@ class Api:
         brands = load_brands()
         for entry in data:
             brand = entry['brand']
-            if brand == "__new__":
-                brand = entry['newBrand']
             if not brand:
                 continue
             if brand not in brands:
@@ -184,6 +166,6 @@ if __name__ == "__main__":
             "LUMATRIX Brand Admin",
             html=html,
             width=1000,
-            height=650
+            height=600
         )
         webview.start(http_server=True, gui="qt", debug=True)
