@@ -12,7 +12,7 @@ git add .
 
 # Step 3: Commit with milestone message
 echo "✅ Committing..."
-git commit -m "✅ Added brand_admin.py — admin tool for self-training brand map"
+git commit -m "git commit -m "✨ Perfect brand admin UI & config system with working theme!""
 
 # Step 4: Show your new log
 echo "📜 Recent commits:"
