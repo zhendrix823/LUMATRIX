@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>LUMATRIX Style Guide — Light</title>
+  <style>
+    body {
+      background: #FFFFFF;    /* Light background */
+      color: #1A1A1A;         /* Near black text */
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    .swatch {
+      display: inline-block;
+      width: 240px;
+      height: 30px;
+      margin: 5px 10px 5px 0;
+      border: 1px solid #1677FF; /* Accent blue border */
+      vertical-align: middle;
+      text-align: center;
+      line-height: 30px;
+      font-size: 12px;
+    }
+    .example-button {
+      display: inline-block;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      margin: 10px 10px 10px 0;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>LUMATRIX Style Guide — Light</h1>
+
+  <h2>Core Colors</h2>
+  <div class="swatch" style="background:#FFFFFF; color:#1A1A1A;">
+    Background (#FFFFFF)
+  </div>
+  <div class="swatch" style="background:#EEEEEE; color:#000000;">
+    Text (#1A1A1A)
+  </div>
+
+  <h2>Accent Pairs — Light</h2>
+  <div class="swatch" style="background:#FFFFFF; color:#1677FF;">
+    Accent as Text on Light (#1677FF)
+  </div><br>
+  <div class="swatch" style="background:#1677FF; color:#000000;">
+    Accent as BG w/ Black Text (#000000)
+  </div><br>
+
+  <h2>Button States</h2>
+  <div class="swatch" style="background:#F5F5F5; color:#1A1A1A;">
+    Button Inactive BG (#F5F5F5)
+  </div>
+  <div class="swatch" style="background:#1A1A1A; color:#FFFFFF;">
+    Button Inactive Text (#1A1A1A)
+  </div>
+  <div class="swatch" style="background:#1677FF; color:#FFFFFF;">
+    Button Active BG (#1677FF)
+  </div>
+  <div class="swatch" style="background:#000; color:#FFFFFF;">
+    Button Active Text (#FFFFFF)
+  </div>
+
+  <h2>Button Examples</h2>
+  <button class="example-button" style="background:#F5F5F5; color:#1A1A1A;">
+    Inactive
+  </button>
+  <button class="example-button" style="background:#1677FF; color:#FFFFFF;">
+    Active
+  </button>
+
+  <h2>Accent Element Example</h2>
+  <div style="background:#1677FF; color:#FFFFFF; padding:10px;">
+    This is a toast or badge using Light Accent BG — text is white!
+  </div>
+
+</body>
+</html>

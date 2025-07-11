@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>LUMATRIX Style Guide — Slate</title>
+  <style>
+    body {
+      background: #1E1E1E;   /* Slate background */
+      color: #FFFFFF;        /* Slate text */
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    .swatch {
+      display: inline-block;
+      width: 240px;
+      height: 30px;
+      margin: 5px 10px 5px 0;
+      border: 1px solid #333;
+      vertical-align: middle;
+      text-align: center;
+      line-height: 30px;
+      font-size: 12px;
+    }
+    .example-button {
+      display: inline-block;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      margin: 10px 10px 10px 0;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>LUMATRIX Style Guide — Slate</h1>
+
+  <h2>Core Colors</h2>
+  <div class="swatch" style="background:#1E1E1E; color:#FFFFFF;">
+    Background (#1E1E1E)
+  </div>
+  <div class="swatch" style="background:#FFFFFF; color:#000;">
+    Text (#FFFFFF)
+  </div>
+
+  <h2>Accent Pairs — Slate</h2>
+  <div class="swatch" style="background:#1E1E1E; color:#3EA6FF;">
+    Accent as Text on Dark (#3EA6FF)
+  </div><br>
+  <div class="swatch" style="background:#3EA6FF; color:#000000;">
+    Accent as BG w/ Black Text (#000000)
+  </div><br>
+
+  <h2>Button States</h2>
+  <div class="swatch" style="background:#555555; color:#FFFFFF;">
+    Button Inactive BG (#555555)
+  </div>
+  <div class="swatch" style="background:#FFFFFF; color:#000;">
+    Button Inactive Text (#FFFFFF)
+  </div>
+  <div class="swatch" style="background:#3EA6FF; color:#000000;">
+    Button Active BG (#3EA6FF)
+  </div>
+  <div class="swatch" style="background:#000; color:#FFFFFF;">
+    Button Active Text (#000000)
+  </div>
+
+  <h2>Button Examples</h2>
+  <button class="example-button" style="background:#555555; color:#FFFFFF;">
+    Inactive
+  </button>
+  <button class="example-button" style="background:#3EA6FF; color:#000000;">
+    Active
+  </button>
+
+  <h2>Accent Element Example</h2>
+  <div style="background:#3EA6FF; color:#000000; padding:10px;">
+    This is a toast or badge using Slate Accent BG — text is black!
+  </div>
+
+</body>
+</html>
