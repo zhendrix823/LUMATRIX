@@ -2,80 +2,72 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>LUMATRIX Style Guide — Matrix</title>
+  <title>LUMATRIX Style Guide — Matrix (Subtle with Button States)</title>
   <style>
     body {
-      background: #000000;   /* Matrix black */
-      color: #00FF66;        /* Neon green default text if wanted */
+      background: #000000;     /* Pure black */
+      color: #00CC33;          /* Darker Matrix green */
       font-family: monospace;
       padding: 20px;
+    }
+    h1, h2 {
+      /* Crisp, no glow */
     }
     .swatch {
       display: inline-block;
       width: 240px;
       height: 30px;
       margin: 5px 10px 5px 0;
-      border: 1px solid #00FF66;
+      border: 1px solid #00CC33;
       vertical-align: middle;
       text-align: center;
       line-height: 30px;
       font-size: 12px;
+      box-shadow: none;
     }
     .example-button {
       display: inline-block;
       padding: 10px 20px;
-      border: none;
       cursor: pointer;
       margin: 10px 10px 10px 0;
       font-weight: bold;
+      border: 1px solid #00CC33;
+    }
+    .inactive-button {
+      background: #000000;
+      color: #00CC33;
+    }
+    .active-button {
+      background: #00CC33;
+      color: #000000;
     }
   </style>
 </head>
 <body>
-  <h1>LUMATRIX Style Guide — Matrix</h1>
+  <h1>LUMATRIX Style Guide — Matrix (Subtle)</h1>
 
   <h2>Core Colors</h2>
-  <div class="swatch" style="background:#000000; color:#00FF66;">
+  <div class="swatch" style="background:#000000; color:#00CC33;">
     Background (#000000)
   </div>
-  <div class="swatch" style="background:#00FF66; color:#000000;">
-    Text (Accent Green #00FF66)
+  <div class="swatch" style="background:#00CC33; color:#000000;">
+    Accent BG (#00CC33) + Black Text (#000000)
   </div>
-
-  <h2>Accent Pairs — Matrix</h2>
-  <div class="swatch" style="background:#000000; color:#00FF66;">
-    Accent as Text on Dark (#00FF66)
-  </div><br>
-  <div class="swatch" style="background:#00FF66; color:#000000;">
-    Accent as BG w/ Black Text (#000000)
-  </div><br>
 
   <h2>Button States</h2>
-  <div class="swatch" style="background:#222222; color:#FFFFFF;">
-    Button Inactive BG (#222222)
+  <div class="swatch" style="background:#000000; color:#00CC33;">
+    Inactive Button BG (#000000)
   </div>
-  <div class="swatch" style="background:#FFFFFF; color:#000000;">
-    Button Inactive Text (#FFFFFF)
-  </div>
-  <div class="swatch" style="background:#00FF66; color:#000000;">
-    Button Active BG (#00FF66)
-  </div>
-  <div class="swatch" style="background:#000000; color:#FFFFFF;">
-    Button Active Text (#000000)
+  <div class="swatch" style="background:#00CC33; color:#000000;">
+    Active Button BG (#00CC33)
   </div>
 
   <h2>Button Examples</h2>
-  <button class="example-button" style="background:#222222; color:#FFFFFF;">
-    Inactive
-  </button>
-  <button class="example-button" style="background:#00FF66; color:#000000;">
-    Active
-  </button>
+  <button class="example-button inactive-button">Inactive</button>
+  <button class="example-button active-button">Active</button>
 
-  <h2>Accent Element Example</h2>
-  <div style="background:#00FF66; color:#000000; padding:10px;">
-    This is a toast or badge using Matrix Accent BG — text is black!
-  </div>
+  <h2>Accent Text Example</h2>
+  <p>This text uses plain Matrix green with no glow — pure terminal style.</p>
 
 </body>
 </html>

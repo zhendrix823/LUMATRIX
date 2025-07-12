@@ -2,79 +2,97 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>LUMATRIX Style Guide — Light</title>
+  <title>LUMATRIX Style Guide — Light (Softer Gray)</title>
   <style>
     body {
-      background: #FFFFFF;    /* Light background */
-      color: #1A1A1A;         /* Near black text */
+      background: #E0E0E0;      /* Slightly darker neutral gray */
+      color: #1A1A1A;
       font-family: sans-serif;
       padding: 20px;
     }
+
     .swatch {
       display: inline-block;
       width: 240px;
       height: 30px;
       margin: 5px 10px 5px 0;
-      border: 1px solid #1677FF; /* Accent blue border */
+      border: 1px solid #1677FF;
       vertical-align: middle;
       text-align: center;
       line-height: 30px;
       font-size: 12px;
+      box-shadow: 0 0 5px #1677FF22;
     }
+
     .example-button {
       display: inline-block;
       padding: 10px 20px;
-      border: none;
       cursor: pointer;
       margin: 10px 10px 10px 0;
       font-weight: bold;
+      font-family: sans-serif;
+      transition: box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .example-button.inactive {
+      background: linear-gradient(to bottom, #FFFFFF, #DDDDDD);
+      color: #1A1A1A;
+      border: 1px solid #CCCCCC;
+      box-shadow: inset 0 1px 0 #FFFFFF, inset 0 -1px 0 #CCCCCC,
+                  0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .example-button.active {
+      background: linear-gradient(to bottom, #1690FF, #005FCC);
+      color: #FFFFFF;
+      border: 1px solid #005FCC;
+      box-shadow: inset 0 1px 0 #33A1FF, inset 0 -1px 0 #0047A0,
+                  0 2px 4px rgba(0,0,0,0.15);
+    }
+
+    .accent-box {
+      background: linear-gradient(to bottom, #1677FF, #005FCC);
+      color: #FFFFFF;
+      padding: 10px;
+      box-shadow: 0 0 5px #1677FF55;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <h1>LUMATRIX Style Guide — Light</h1>
+  <h1>LUMATRIX Style Guide — Light (Softer Gray)</h1>
 
   <h2>Core Colors</h2>
-  <div class="swatch" style="background:#FFFFFF; color:#1A1A1A;">
-    Background (#FFFFFF)
+  <div class="swatch" style="background:#E0E0E0; color:#1A1A1A;">
+    Background (#E0E0E0)
   </div>
-  <div class="swatch" style="background:#EEEEEE; color:#000000;">
+  <div class="swatch" style="background:#1A1A1A; color:#FFFFFF;">
     Text (#1A1A1A)
   </div>
 
   <h2>Accent Pairs — Light</h2>
-  <div class="swatch" style="background:#FFFFFF; color:#1677FF;">
+  <div class="swatch" style="background:#E0E0E0; color:#1677FF;">
     Accent as Text on Light (#1677FF)
   </div><br>
-  <div class="swatch" style="background:#1677FF; color:#000000;">
-    Accent as BG w/ Black Text (#000000)
-  </div><br>
+  <div class="swatch" style="background:#1677FF; color:#FFFFFF;">
+    Accent as BG w/ White Text (#FFFFFF)
+  </div>
 
   <h2>Button States</h2>
-  <div class="swatch" style="background:#F5F5F5; color:#1A1A1A;">
-    Button Inactive BG (#F5F5F5)
-  </div>
-  <div class="swatch" style="background:#1A1A1A; color:#FFFFFF;">
-    Button Inactive Text (#1A1A1A)
+  <div class="swatch" style="background:#FFFFFF; color:#1A1A1A;">
+    Button Inactive BG (Gradient + Bevel)
   </div>
   <div class="swatch" style="background:#1677FF; color:#FFFFFF;">
-    Button Active BG (#1677FF)
-  </div>
-  <div class="swatch" style="background:#000; color:#FFFFFF;">
-    Button Active Text (#FFFFFF)
+    Button Active BG (Gradient + Bevel)
   </div>
 
   <h2>Button Examples</h2>
-  <button class="example-button" style="background:#F5F5F5; color:#1A1A1A;">
-    Inactive
-  </button>
-  <button class="example-button" style="background:#1677FF; color:#FFFFFF;">
-    Active
-  </button>
+  <button class="example-button inactive">Inactive</button>
+  <button class="example-button active">Active</button>
 
   <h2>Accent Element Example</h2>
-  <div style="background:#1677FF; color:#FFFFFF; padding:10px;">
-    This is a toast or badge using Light Accent BG — text is white!
+  <div class="accent-box">
+    This is a toast or badge using the Accent gradient background — text stays white!
   </div>
 
 </body>

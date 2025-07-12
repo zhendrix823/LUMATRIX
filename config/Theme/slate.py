@@ -1,25 +1,17 @@
-# config/theme/slate.py
-
 SLATE = {
-    'background': '#1E1E1E',      # Slate dark gray
+    'background': '#1C1C1C',
     'text': '#FFFFFF',
-    'font_family': 'sans-serif',
+    'font_family': 'monospace',
 
-    'table_border': '#333333',
-    'input_bg': '#2A2A2A',
-    'input_text': '#EEEEEE',
-    'input_border': '#444444',
-
-    'accent': {
-        'color': '#3EA6FF',       # Bright slate blue
-        'on_dark': '#3EA6FF',
-        'on_light': '#000000'
-    },
+    'table_border': '#444444',
+    'input_bg': '#000000',
+    'input_text': '#FFFFFF',
+    'input_border': '#555555',
 
     'button': {
-        'inactive_bg': '#555555',
-        'inactive_text': '#FFFFFF',
-        'active_bg': '#3EA6FF',
+        'inactive_bg': '#333333',
+        'inactive_text': '#AAAAAA',
+        'active_bg': '#00FF66',
         'active_text': '#000000'
     }
 }

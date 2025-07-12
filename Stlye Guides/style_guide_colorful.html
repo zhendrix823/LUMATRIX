@@ -2,25 +2,28 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>LUMATRIX Style Guide — Colorful Gamer Mode</title>
+  <title>LUMATRIX Style Guide — Colorful (Gamer Mode Polished)</title>
   <style>
     body {
-      background: #0A0A0A;   /* Dark gamer base */
-      color: #EEEEEE;        /* Soft bright text */
+      background: #0A0A0A;     /* Near black, gamer vibe */
+      color: #EEEEEE;          /* Soft bright for readability */
       font-family: 'Orbitron', sans-serif;
       padding: 20px;
     }
+
     .swatch {
       display: inline-block;
       width: 240px;
       height: 30px;
       margin: 5px 10px 5px 0;
-      border: 1px solid #3EA6FF; /* Cyan border for RGB vibe */
+      border: 1px solid #8A2BE2; /* RGB purple accent */
       vertical-align: middle;
       text-align: center;
       line-height: 30px;
       font-size: 12px;
+      box-shadow: 0 0 5px #8A2BE2; /* Subtle RGB glow */
     }
+
     .example-button {
       display: inline-block;
       padding: 10px 20px;
@@ -29,11 +32,32 @@
       margin: 10px 10px 10px 0;
       font-weight: bold;
       font-family: 'Orbitron', sans-serif;
+      transition: box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .example-button.inactive {
+      background: linear-gradient(to bottom, #333333, #1A1A1A);
+      color: #EEEEEE;
+      border: 1px solid #444444;
+    }
+
+    .example-button.active {
+      background: linear-gradient(to bottom, #9B30FF, #8A2BE2);
+      color: #000000;
+      box-shadow: 0 0 8px #8A2BE2; /* Subtle glow for active */
+    }
+
+    .accent-box {
+      background: linear-gradient(to bottom, #8A2BE2, #5D1E9C);
+      color: #000000;
+      padding: 10px;
+      box-shadow: 0 0 8px #8A2BE2;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <h1>LUMATRIX Style Guide — Colorful Gamer Mode</h1>
+  <h1>LUMATRIX Style Guide — Colorful (Gamer Mode Polished)</h1>
 
   <h2>Core Colors</h2>
   <div class="swatch" style="background:#0A0A0A; color:#EEEEEE;">
@@ -49,33 +73,23 @@
   </div><br>
   <div class="swatch" style="background:#8A2BE2; color:#000000;">
     Accent as BG w/ Black Text (#000000)
-  </div><br>
+  </div>
 
   <h2>Button States</h2>
   <div class="swatch" style="background:#333333; color:#EEEEEE;">
-    Button Inactive BG (#333333)
-  </div>
-  <div class="swatch" style="background:#EEEEEE; color:#000;">
-    Button Inactive Text (#EEEEEE)
+    Button Inactive BG (#333333 - gradient)
   </div>
   <div class="swatch" style="background:#8A2BE2; color:#000000;">
-    Button Active BG (#8A2BE2)
-  </div>
-  <div class="swatch" style="background:#000; color:#EEEEEE;">
-    Button Active Text (#000000)
+    Button Active BG (#8A2BE2 - gradient)
   </div>
 
   <h2>Button Examples</h2>
-  <button class="example-button" style="background:#333333; color:#EEEEEE;">
-    Inactive
-  </button>
-  <button class="example-button" style="background:#8A2BE2; color:#000000;">
-    Active
-  </button>
+  <button class="example-button inactive">Inactive</button>
+  <button class="example-button active">Active</button>
 
   <h2>Accent Element Example</h2>
-  <div style="background:#8A2BE2; color:#000000; padding:10px;">
-    This is a toast or badge using Gamer Accent BG — text is black!
+  <div class="accent-box">
+    This is a toast or badge using the Accent gradient background — text stays black!
   </div>
 
 </body>

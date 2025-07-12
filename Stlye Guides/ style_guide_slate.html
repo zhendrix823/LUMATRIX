@@ -2,79 +2,97 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>LUMATRIX Style Guide — Slate</title>
+  <title>LUMATRIX Style Guide — Slate (Polished)</title>
   <style>
     body {
-      background: #1E1E1E;   /* Slate background */
-      color: #FFFFFF;        /* Slate text */
+      background: #121212;    /* Deep slate gray */
+      color: #EEEEEE;         /* Light text for contrast */
       font-family: sans-serif;
       padding: 20px;
     }
+
     .swatch {
       display: inline-block;
       width: 240px;
       height: 30px;
       margin: 5px 10px 5px 0;
-      border: 1px solid #333;
+      border: 1px solid #00BCD4;  /* Muted teal accent */
       vertical-align: middle;
       text-align: center;
       line-height: 30px;
       font-size: 12px;
+      box-shadow: 0 0 5px #00BCD422; /* Subtle highlight */
     }
+
     .example-button {
       display: inline-block;
       padding: 10px 20px;
-      border: none;
       cursor: pointer;
       margin: 10px 10px 10px 0;
       font-weight: bold;
+      font-family: sans-serif;
+      transition: box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .example-button.inactive {
+      background: linear-gradient(to bottom, #1E1E1E, #121212);
+      color: #EEEEEE;
+      border: 1px solid #333333;
+      box-shadow: inset 0 1px 0 #222222, inset 0 -1px 0 #000000,
+                  0 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .example-button.active {
+      background: linear-gradient(to bottom, #00BCD4, #0097A7);
+      color: #000000;
+      border: 1px solid #0097A7;
+      box-shadow: inset 0 1px 0 #26C6DA, inset 0 -1px 0 #00838F,
+                  0 2px 4px rgba(0,0,0,0.4);
+    }
+
+    .accent-box {
+      background: linear-gradient(to bottom, #00BCD4, #0097A7);
+      color: #000000;
+      padding: 10px;
+      box-shadow: 0 0 5px #00BCD455;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <h1>LUMATRIX Style Guide — Slate</h1>
+  <h1>LUMATRIX Style Guide — Slate (Polished)</h1>
 
   <h2>Core Colors</h2>
-  <div class="swatch" style="background:#1E1E1E; color:#FFFFFF;">
-    Background (#1E1E1E)
+  <div class="swatch" style="background:#121212; color:#EEEEEE;">
+    Background (#121212)
   </div>
-  <div class="swatch" style="background:#FFFFFF; color:#000;">
-    Text (#FFFFFF)
+  <div class="swatch" style="background:#EEEEEE; color:#000;">
+    Text (#EEEEEE)
   </div>
 
   <h2>Accent Pairs — Slate</h2>
-  <div class="swatch" style="background:#1E1E1E; color:#3EA6FF;">
-    Accent as Text on Dark (#3EA6FF)
+  <div class="swatch" style="background:#121212; color:#00BCD4;">
+    Accent as Text on Dark (#00BCD4)
   </div><br>
-  <div class="swatch" style="background:#3EA6FF; color:#000000;">
+  <div class="swatch" style="background:#00BCD4; color:#000000;">
     Accent as BG w/ Black Text (#000000)
-  </div><br>
+  </div>
 
   <h2>Button States</h2>
-  <div class="swatch" style="background:#555555; color:#FFFFFF;">
-    Button Inactive BG (#555555)
+  <div class="swatch" style="background:#1E1E1E; color:#EEEEEE;">
+    Button Inactive BG (Gradient)
   </div>
-  <div class="swatch" style="background:#FFFFFF; color:#000;">
-    Button Inactive Text (#FFFFFF)
-  </div>
-  <div class="swatch" style="background:#3EA6FF; color:#000000;">
-    Button Active BG (#3EA6FF)
-  </div>
-  <div class="swatch" style="background:#000; color:#FFFFFF;">
-    Button Active Text (#000000)
+  <div class="swatch" style="background:#00BCD4; color:#000000;">
+    Button Active BG (Gradient Accent)
   </div>
 
   <h2>Button Examples</h2>
-  <button class="example-button" style="background:#555555; color:#FFFFFF;">
-    Inactive
-  </button>
-  <button class="example-button" style="background:#3EA6FF; color:#000000;">
-    Active
-  </button>
+  <button class="example-button inactive">Inactive</button>
+  <button class="example-button active">Active</button>
 
   <h2>Accent Element Example</h2>
-  <div style="background:#3EA6FF; color:#000000; padding:10px;">
-    This is a toast or badge using Slate Accent BG — text is black!
+  <div class="accent-box">
+    This is a toast or badge using the Accent gradient background — text stays black!
   </div>
 
 </body>

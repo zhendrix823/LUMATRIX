@@ -1,41 +1,42 @@
 {
-  "Robe": [
-    "Robe",
-    "Robin",
-    "Cuete",
-    "iForte",
-    "BMFL"
-  ],
-  "Elation": [
-    "Elation"
-  ],
-  "Martin": [
-    "Martin",
-    "MAC",
-    "Aura"
-  ],
-  "ChromaQ": [
-    "Chroma-Q",
-    "Studio Force",
-    "Force II",
-    "Studio Force II 12",
-    "Studio Force II 12 Plus"
-  ],
-  "Portman": [
-    "Portman",
-    "S-Tribe",
-    "STRIBE",
-    "Omniray",
-    "Omni-Ray",
-    "Amulet",
-    "EVO ELEMENT",
-    "P1 EVO",
-    "P2 EVO",
-    "P3 EVO",
-    "Mantis",
-    "P1 Mini",
-    "P1 retro lamp",
-    "P2 Hexaline",
-    "P3 PIX3L"
-  ]
+    "Robe": [
+        "Robe",
+        "Robin",
+        "Cuete",
+        "iForte",
+        "BMFL"
+    ],
+    "Elation": [
+        "Elation"
+    ],
+    "Martin": [
+        "Martin",
+        "MAC",
+        "Aura"
+    ],
+    "ChromaQ": [
+        "Chroma-Q",
+        "Studio Force",
+        "Force II",
+        "Studio Force II 12",
+        "Studio Force II 12 Plus",
+        "Stuio Force II PLus"
+    ],
+    "Portman": [
+        "Portman",
+        "S-Tribe",
+        "STRIBE",
+        "Omniray",
+        "Omni-Ray",
+        "Amulet",
+        "EVO ELEMENT",
+        "P1 EVO",
+        "P2 EVO",
+        "P3 EVO",
+        "Mantis",
+        "P1 Mini",
+        "P1 retro lamp",
+        "P2 Hexaline",
+        "P3 PIX3L"
+    ]
 }
